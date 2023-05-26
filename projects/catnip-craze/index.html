@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Cat Game</title>
+
+<script src="https://zimjs.org/cdn/nft/01/zim_physics.js"></script>
+
+<script>
+
+const assets = ["catsprite.json", "catsprite.png", "bg.jpg", "bgmusic.mp3", "cc-logo.png", "bear1.png", "bear2.png", "dressertop.png", "floor.png", "flower1.png", "flower2.png", "frame1.png", "frame2.png", "shelflg.png", "shelfsm.png", "stool.png", {font:"PressStart2P", src:"PressStart2P-Regular.ttf"},{font:"Nunito", src:"Nunito-Light.ttf"}];
+const path = "assets/";
+
+const frame = new Frame(FIT, 1000, 625, light, dark, assets, path);
+frame.on("ready", () => {
+    const stage = frame.stage;
+    let stageW = frame.width;
+    let stageH = frame.height;
+    asset("bg.jpg").center();
+
+    //boundary
+    const boundary = new Boundary(0,0,stageW,stageH);
+
+    //physics
+    const physics = new Physics({
+      gravity:5,
+      borders:boundary
+    });
+
+    //platforms
+    const dresser = asset("dressertop.png").centerReg().pos(0,106,LEFT,MIDDLE).addPhysics(false,null,null,.4);;
+    const shelfsm = asset("shelfsm.png").centerReg().pos(50,20,CENTER,MIDDLE).addPhysics(false,null,null,.4);;
+    const shelflg = asset("shelfsm.png").clone().centerReg().pos(260,-120,CENTER,MIDDLE).addPhysics(false,null,null,.4);;
+    const stool = asset("stool.png").centerReg().pos(320,60,LEFT,BOTTOM);
+
+    //floor
+    const floor = asset("floor.png").centerReg().pos(0,0,CENTER,BOTTOM).addPhysics(false,null,null,.4);
+
+    //objects
+    const breakables = new Container().addTo(stage).cur();
+    const flower = asset("flower2.png").addTo(breakables).centerReg().loc(750,60).addPhysics({bounciness:.6});
+    const pot = asset("flower1.png").addTo(breakables).centerReg().loc(740,100).addPhysics({bounciness:.6});
+    //weld flower so it can break
+    const flowerJoin = physics.join(flower,pot,{x:flower.x,y:flower.y},null, null, null, "weld");
+
+    const bearHead = asset("bear2.png").addTo(breakables).centerReg().loc(100,208).addPhysics({bounciness:.8});
+    const bearBody = asset("bear1.png").addTo(breakables).centerReg().loc(100,260).addPhysics({bounciness:.8});
+    //weld bear so it can break
+    const bearJoin = physics.join(bearHead,bearBody,{x:bearHead.x,y:bearHead.y});
+
+    const frameTop = asset("frame2.png").addTo(breakables).centerReg().loc(547.5,215).addPhysics({bounciness:.6});
+    const frameBottom = asset("frame1.png").addTo(breakables).centerReg().loc(550,250).addPhysics({bounciness:.6});
+    //weld picture frame so it can break
+    const frameJoin = physics.join(frameTop,frameBottom,{x:frameTop.x,y:frameTop.y});
+
+    //bgmusic
+    const bgm = asset("bgmusic.mp3");
+
+    //Text STYLE
+    STYLE = {font:"PressStart2P", color:white, size:20};
+
+    const intro = new Pane({
+      label:new Label({
+        text:"Uh oh! Someone left out the catnip and Patches the cat has gotten into it. She's going to knock over and break everything!",
+        size:20,
+        font:"Nunito",
+        bold:true,
+        color:dark,
+        labelWidth:450,
+        align:MIDDLE,
+        shiftVertical:-25,
+      }),
+      width:500,
+      height:180,
+      backdropColor:"rgba(0,0,0,.5)",
+      fadeTime:.3,
+      displayClose:false,
+      backdropClose:false,
+    }).show().alp(0).animate({alpha:1},.8);
+
+    const logo = asset("cc-logo.png").sca(.3).centerReg().loc(500, 160)
+      .animate({scale:1.3},2,"elasticOut");
+
+    var play = new Button(250, 50, "Get Crazy!", "#d54282", "#d41473").center(intro).mov(0,45);
+    play.on("click", startGame);
+
+    function startGame() {
+      intro.hide();
+      logo.dispose();
+      bgm.play(.2);
+
+      new Label({
+        text:"Use WASD or arrow keys to move",
+        size:12,
+        color:white,
+        labelWidth:150,
+        shiftVertical:-25,
+      }).pos(10,40,TOP,LEFT);
+
+      //catsprite
+      var cat = new Sprite({json:frame.asset("catsprite.json")})
+            .centerReg()
+            .center()
+            .mov(0,100)
+            .sca(1.25)
+            .run({loop:true, label:"stand", time:.8})
+            .addPhysics({contract:10, density:.1, bounciness:.8})
+            .control({speed:8});
+
+      frame.on("keydown", () => {
+        cat.run({
+          label:"walk",
+          call:() => {
+            cat.run({
+              loop:true,
+              label:"stand"
+            }); //end of run
+          } //end of call
+        }); //end of walk
+      }); // end of keydown
+
+      //wacking for more force
+      breakables.on("mousedown", (e) => {
+        cat.run({
+          label:"hit",
+          time:.3,
+          call:() => {
+            cat.run({
+              loop:true,
+              label:"stand"
+            });
+          } // end of call
+        }); // end of hit
+
+          cat.contact(() => {
+            e.target.impulse(10,5)
+          });
+
+      }); // end of mousedown
+
+      //break joins when object hits floor
+      cat.contact((obj) => {
+        if (obj == pot){
+          physics.break(flowerJoin);
+          pot.spin(.3);
+        };
+
+        if (obj == flower){
+          physics.break(flowerJoin);
+          flower.spin(.3);
+        }
+
+        if (obj == frameTop){
+          physics.break(frameJoin);
+          frameTop.spin(.3);
+        };
+
+        if (obj == frameBottom){
+          physics.break(frameJoin);
+          frameBottom.spin(.3);
+        }
+
+        if (obj == bearHead){
+          physics.break(bearJoin);
+          bearHead.spin(.4);
+        };
+
+        if (obj == bearBody){
+          physics.break(bearJoin);
+          bearBody.spin(.4);
+        }
+
+      });
+
+      Ticker.add(()=>{
+          // physics.debug();
+      });
+
+      var reset = new Button(180, 60, "Reset", "#d54282", "#d41473")
+              .pos(-20,0, RIGHT, BOTTOM)
+              .sca(.6)
+              .tap(() => {
+                zgo("index.html");
+            });
+
+    stage.update(); // needed to view changes
+    }
+});
+
+</script>
+<meta name="viewport" content="width=device-width, user-scalable=no" />
+</head>
+<body></body>
+</html>

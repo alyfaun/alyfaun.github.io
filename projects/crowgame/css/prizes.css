@@ -1,0 +1,101 @@
+body {
+    background: url("../assets/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.container {
+    flex-direction: column;
+}
+#prizeTop{
+    display:flex;
+    flex-direction: column;
+    width: 95%;
+    text-align: left;
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow:0px 6px 5px rgba(0, 0, 0,.2);
+    margin:auto;
+}
+#prizeBtm{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+h1{
+    margin: 0px;
+    margin-left:3%;
+}
+@media only screen and (max-width: 645px) {
+    h1{
+        font-size: 7.2vw;
+    }
+}
+h2{
+    font-size: 32pt;
+    margin-top: -10px;
+    margin-bottom: 5px;
+}
+.h2spec{
+    font-family: 'Gluten';
+    font-weight: 600;
+}
+h3{
+    font-size: 20pt;
+    margin-top: 10px;
+    margin-bottom: -10px;
+}
+p{
+    font-size: 14pt;
+    padding:0;
+    margin: 0;
+    margin-top: -10px;
+}
+a{
+    font-size: 10pt;
+    margin:0px 10px;
+}
+#prizeTop>a{
+    font-size: 12pt;
+    margin: 10px 0px -10px 0px;
+}
+#prizeList{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 23%;
+    text-align: center;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow:0px 6px 5px rgba(0, 0, 0,.2);
+    padding: 10px 10px;
+}
+@media only screen and (max-width: 1500px) {
+    #prizeList{
+        width:30%;
+        padding: 15px 0px; 
+    }
+}
+@media only screen and (max-width: 1200px) {
+    #prizeList{
+        width:38%;
+    }
+}
+@media only screen and (max-width: 900px) {
+    #prizeList{
+        width:60%;
+    }
+}
+@media only screen and (max-width: 640px) {
+    #prizeList{
+        width:80%;
+    }
+}
+#prizeList>img{
+    margin: 10px 10px -10px 10px;
+    height: 175px;
+}

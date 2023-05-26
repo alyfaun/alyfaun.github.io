@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Aly's Portrait</title>
+
+<script src="https://zimjs.org/cdn/nft/00/zim.js"></script>
+
+<script>
+
+const assets = ["bgmusic.mp3","aly.png", "bg.png", "cats.png", "clouds.png", "clouds.json", "coffee.png", "cpu.png", "degree.png", "plants.png", "switch.png",{font:"george", src:"LouisGeorgeCafe.ttf"}];
+const path = "assets/";
+
+const frame = new Frame(FIT, 720, 1045, "#ecc9c7", lighter, assets, path);
+frame.on("ready", () => {
+    const stage = frame.stage;
+    let stageW = frame.width;
+    let stageH = frame.height;
+    asset("bg.png").sca(.5).center();
+
+    // items/assets
+    const aly = asset("aly.png").sca(.5).loc(420,420);
+    const cats = asset("cats.png").sca(.5).loc(150,840).drag();
+    const coffee = asset("coffee.png").sca(.5).loc(270,610).drag();
+    const cpu = asset("cpu.png").sca(.5).loc(35,575).drag();
+    const degree = asset("degree.png").sca(.5).loc(350,100).drag();
+    const plants = asset("plants.png").sca(.5).loc(25,50).drag();
+    const game = asset("switch.png").sca(.5).loc(500,840).drag();
+
+    //Text style
+    STYLE = {font:"george", color:darker};
+
+    //intro
+
+    const intro = new Pane({
+      label:new Label({
+      text:"Welcome to my room! Drag objects from around the room into my thoughts and you can learn a little more about me :)",
+      size:25,
+      labelWidth:450,
+      }),
+      width:600,
+      height:300,
+      titleBar:" Hello!",
+      backgroundColor:"#ffdef7",
+      backdropColor:"rgba(255,255,255,.4)",
+      fadeTime:.4,
+      displayClose:false,
+      backdropClose:false,
+    }).show();
+
+    var okay = new Button(160, 50, "Let's Go!", "white", light).center(intro).mov(0,100);
+    okay.on("click", playMusic);
+
+    function playMusic() {
+      intro.hide();
+      asset("bgmusic.mp3").play({loop:true, volume:.2});
+      const thought = new Sprite({
+        image:asset("clouds.png"),
+        cols:2,
+        rows:1,
+      }).loc(300,235).sca(.5).run({loop:true});
+    }
+
+    //animated cloud
+    const clouds = new Container(310,245,275,175).addTo(stage)
+
+    //pop-up panes+hitTests
+    cats.on("pressup", function() {
+      if (cats.hitTestBounds(clouds)) {
+          new Pane({
+            width:500,
+            height:175,
+            label:new Label({
+            text:"Back in early August, I got two ragdoll kittens named Bunnie and Yuna. Even though they drive me crazy, I love them dearly.",
+            size:25,
+            labelWidth:450,
+          }),
+            backgroundColor:"rgba(255,255,255,.8)",
+            backdropColor:"rgba(255,255,255,.4)",
+            fadeTime:.3,
+            displayClose:false,
+            backdropClose:false,
+            close:true,
+            closeColor:"#e3aad5"
+          }).center();
+          cats.animate({x:150, y:840}, .3);
+          cats.effect(new ColorEffect(.75,.75,.75))
+
+          stage.update();
+        } else {
+          cats.animate({x:150, y:840}, .3)};
+    });
+
+    coffee.on("pressup", function() {
+      if (coffee.hitTestBounds(clouds)) {
+          new Pane({
+            width:500,
+            height:200,
+            label:new Label({
+            text:"I've been drinking coffee since I started highschool. I probably have a mild caffeine addiction at this point but I don't really care cause it tastes too good to give up LOL",
+            size:25,
+            labelWidth:450,
+          }),
+            backgroundColor:"rgba(255,255,255,.8)",
+            backdropColor:"rgba(255,255,255,.4)",
+            fadeTime:.3,
+            displayClose:false,
+            backdropClose:false,
+            close:true,
+            closeColor:"#e3aad5"
+          }).center();
+          coffee.animate({x:270, y:610}, .3);
+          coffee.effect(new ColorEffect(.75,.75,.75))
+
+          stage.update();
+        } else {
+          coffee.animate({x:270, y:610}, .3)};
+    });
+
+    cpu.on("pressup", function() {
+      if (cpu.hitTestBounds(clouds)) {
+          new Pane({
+            width:500,
+            height:200,
+            label:new Label({
+            text:"I love playing video games, so I built myself a PC a few years ago for the first time. I've been playing computers games since I was young and  I enjoy them a lot :) I also took up digital art so I got myself a drawing tablet!",
+            size:25,
+            labelWidth:450,
+          }),
+            backgroundColor:"rgba(255,255,255,.8)",
+            backdropColor:"rgba(255,255,255,.4)",
+            fadeTime:.3,
+            displayClose:false,
+            backdropClose:false,
+            close:true,
+            closeColor:"#e3aad5"
+          }).center();
+          cpu.animate({x:35, y:610}, .3);
+          cpu.effect(new ColorEffect(.75,.75,.75))
+
+          stage.update();
+        } else {
+          cpu.animate({x:35, y:610}, .3)};
+    });
+
+    degree.on("pressup", function() {
+      if (degree.hitTestBounds(clouds)) {
+          new Pane({
+            width:500,
+            height:300,
+            label:new Label({
+            text:"In 2020 I graduated from Ryerson University with a Bachelor of Technology in Graphic Communications Management. I also had a concentration in Packaging and a minor in Communication and Design. I went on to work at a commercial printers where I realized I'd much rather work in technology and digital output than print. That's what lead me to IMM!",
+            size:25,
+            labelWidth:450,
+          }),
+            backgroundColor:"rgba(255,255,255,.8)",
+            backdropColor:"rgba(255,255,255,.4)",
+            fadeTime:.3,
+            displayClose:false,
+            backdropClose:false,
+            close:true,
+            closeColor:"#e3aad5"
+          }).center();
+          degree.animate({x:350, y:100}, .3);
+          degree.effect(new ColorEffect(.75,.75,.75))
+
+          stage.update();
+        } else {
+          degree.animate({x:350, y:100}, .3)};
+    });
+
+    plants.on("pressup", function() {
+      if (plants.hitTestBounds(clouds)) {
+          new Pane({
+            width:500,
+            height:200,
+            label:new Label({
+            text:"Since moving out on my own I have somehow accumulated a collection of plants. They're very pretty and I try my best to take care of them but they always end up dying. Please don't trust me with more plants.",
+            size:25,
+            labelWidth:450,
+          }),
+            backgroundColor:"rgba(255,255,255,.8)",
+            backdropColor:"rgba(255,255,255,.4)",
+            fadeTime:.3,
+            displayClose:false,
+            backdropClose:false,
+            close:true,
+            closeColor:"#e3aad5"
+          }).center();
+          plants.animate({x:25, y:50}, .3);
+          plants.effect(new ColorEffect(.75,.75,.75))
+
+          stage.update();
+        } else {
+          plants.animate({x:25, y:50}, .3)};
+    });
+
+    game.on("pressup", function() {
+      if (game.hitTestBounds(clouds)) {
+          new Pane({
+            width:500,
+            height:270,
+            label:new Label({
+            text:"I've been a fan of Nintendo since I had the cognitive development to understand videos games. I've owned all of their consoles from home systems to handhelds. I've played every Pokemon game ever released and I even own jumbo plushies of Psyduck and Snorlax with a Slowpoke and Arcanine on the way!",
+            size:25,
+            labelWidth:450,
+          }),
+            backgroundColor:"rgba(255,255,255,.8)",
+            backdropColor:"rgba(255,255,255,.4)",
+            fadeTime:.3,
+            displayClose:false,
+            backdropClose:false,
+            close:true,
+            closeColor:"#e3aad5"
+          }).center();
+          game.animate({x:500, y:840}, .3);
+          game.effect(new ColorEffect(.75,.75,.75))
+
+          stage.update();
+        } else {
+          game.animate({x:500, y:840}, .3)};
+    });
+
+    stage.update();
+});
+
+</script>
+<meta name="viewport" content="width=device-width, user-scalable=no" />
+</head>
+<body></body>
+</html>
