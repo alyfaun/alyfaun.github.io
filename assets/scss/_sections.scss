@@ -12,7 +12,7 @@ section {
 
   h2 {
     font-size: 32px;
-    font-weight: bold;
+    font-weight: 500;
     text-transform: uppercase;
     margin-bottom: 20px;
     padding-bottom: 20px;
@@ -55,7 +55,7 @@ section {
     h3 {
       font-weight: 700;
       font-size: 26px;
-      color: lighten($secondary, 20);
+      color: $primary;
     }
   
     ul {
@@ -420,12 +420,12 @@ section {
         width: 12px;
         height: 12px;
         background-color: #fff;
-        opacity: 1;
-        border: 1px solid $primary;
+        opacity: .5;
+        border: 1px solid $secondary;
       }
 
       .swiper-pagination-bullet-active {
-        background-color: $primary;
+        background-color: $secondary;
       }
     }
 
@@ -718,7 +718,7 @@ section {
 
   .info {
     width: 100%;
-    background: $white;
+    background: #f9f6f1;
 
     i {
       font-size: 20px;
@@ -764,7 +764,7 @@ section {
 
   .php-email-form {
     width: 100%;
-    background: #fff;
+    background: #f9f6f1;
 
     .form-group {
       padding-bottom: 8px;

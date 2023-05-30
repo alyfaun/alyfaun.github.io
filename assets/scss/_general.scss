@@ -4,6 +4,7 @@
 body {
   font-family: $font-default;
   color: $default;
+  background: #f9f6f1;
 }
 
 a {
@@ -16,8 +17,14 @@ a:hover  {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2 {
   font-family: $font-primary;
+}
+
+h3, h4, h5, h6 {
+  font-family: $font-secondary;
+  font-weight: 500;
+  text-transform: uppercase;
 }
 
 /*--------------------------------------------------------------

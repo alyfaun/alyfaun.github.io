@@ -30,7 +30,7 @@
     transition: 0.3s;
     font-size: 15px; 
     border-radius: 50px;
-    background: lighten($secondary, 64);
+    // background: lighten($secondary, 64);
     height: 56px;
     width: 100%;
     overflow: hidden;
@@ -57,7 +57,7 @@
 
   a:hover, .active, .active:focus, li:hover > a {
     color: $white;
-    background: $primary;
+    background: $secondary;
     span {
       color: $white;
     }

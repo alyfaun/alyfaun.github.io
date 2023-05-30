@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Source+Sans+Pro:ital,wght@0,400;0,600;1,400;1,600&display=swap");
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 40px;
+}
+
+@media only screen and (min-width: 768px) {
+  body {
+    width: 750px;
+    padding-left: 36px;
+    padding-right: 36px;
+    margin: auto;
+  }
+}
+h1, h2, h3 {
+  font-family: "Playfair Display", serif;
+  color: #333;
+}
+
+h1, h2 {
+  font-weight: 600;
+}
+
+h3 {
+  font-weight: 500;
+  margin-bottom: 0px;
+}
+
+p {
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+label {
+  font-weight: 600;
+}
+
+ul {
+  margin-left: -20px;
+  list-style-type: circle;
+}
+
+.name {
+  font-variant: small-caps;
+  margin-bottom: -10px;
+  font-size: 2.5em;
+  line-height: 90%;
+}
+.name .nickName {
+  font-size: 0.75em;
+}
+
+.sub {
+  font-weight: 600;
+  font-size: 1.15em;
+}
+
+.date {
+  font-style: italic;
+  color: rgb(150, 150, 150);
+  font-weight: 400;
+  font-size: 0.85em;
+}
+
+.divider {
+  position: relative;
+  margin-top: 35px;
+  margin-bottom: 30px;
+  height: 1px;
+}
+
+.div-transparent:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 40%;
+  width: 60%;
+  height: 1px;
+  background-image: linear-gradient(to right, transparent, rgb(150, 150, 150), transparent);
+}
