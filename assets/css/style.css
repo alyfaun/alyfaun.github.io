@@ -13,7 +13,7 @@ a {
 }
 
 a:hover {
-  color: #b8b4bc;
+  color: rgb(184.3678756477, 179.9533678756, 188.0466321244);
   text-decoration: none;
 }
 
@@ -49,7 +49,7 @@ h3, h4, h5, h6 {
   line-height: 0;
 }
 .back-to-top:hover {
-  background: #b3afb7;
+  background: rgb(179.2943005181, 174.5626943005, 183.2373056995);
   color: #fff;
 }
 .back-to-top.active {
@@ -118,7 +118,7 @@ h3, h4, h5, h6 {
   #header {
     width: 300px;
     background: #fff;
-    border-right: 1px solid #b4bbbb;
+    border-right: 1px solid rgb(179.9836065574, 187.0163934426, 187.0163934426);
     left: -300px;
   }
 }
@@ -400,7 +400,7 @@ section {
   font-size: 36px;
   display: block;
   font-weight: 600;
-  color: #524d57;
+  color: rgb(82.4248704663, 77.3264248705, 86.6735751295);
 }
 .facts .count-box p {
   padding: 0;
@@ -432,7 +432,7 @@ section {
   font-style: normal;
 }
 .skills .progress-bar-wrap {
-  background: #bfc5c5;
+  background: rgb(190.6852459016, 196.7147540984, 196.7147540984);
 }
 .skills .progress-bar {
   width: 1px;
@@ -468,7 +468,7 @@ section {
 }
 .resume .resume-item h5 {
   font-size: 16px;
-  background: #c4caca;
+  background: rgb(196.0360655738, 201.5639344262, 201.5639344262);
   padding: 5px 15px;
   display: inline-block;
   font-weight: 600;
@@ -570,8 +570,8 @@ section {
   position: absolute;
   top: 35px;
   left: 35px;
-  border-top: 3px solid #a7afaf;
-  border-left: 3px solid #a7afaf;
+  border-top: 3px solid rgb(166.606557377, 174.893442623, 174.893442623);
+  border-left: 3px solid rgb(166.606557377, 174.893442623, 174.893442623);
   transition: all 0.5s ease 0s;
   z-index: 9994;
 }
@@ -583,8 +583,8 @@ section {
   position: absolute;
   bottom: 35px;
   right: 35px;
-  border-bottom: 3px solid #a7afaf;
-  border-right: 3px solid #a7afaf;
+  border-bottom: 3px solid rgb(166.606557377, 174.893442623, 174.893442623);
+  border-right: 3px solid rgb(166.606557377, 174.893442623, 174.893442623);
   transition: all 0.5s ease 0s;
   z-index: 9994;
 }
@@ -612,7 +612,7 @@ section {
   transition: 0.3s;
 }
 .portfolio .portfolio-wrap .portfolio-links a:hover {
-  color: #c5c1c8;
+  color: rgb(197.0518134715, 193.4300518135, 200.0699481865);
 }
 .portfolio .portfolio-wrap:hover::before {
   top: 0;
@@ -893,7 +893,7 @@ section {
   padding: 0 0 0 60px;
   margin-bottom: 0;
   font-size: 14px;
-  color: #4d5656;
+  color: rgb(77.4918032787, 85.5081967213, 85.5081967213);
 }
 .contact .info .email, .contact .info .phone {
   margin-top: 40px;
@@ -965,7 +965,7 @@ section {
   border-radius: 50px;
 }
 .contact .php-email-form button[type=submit]:hover {
-  background: #b3afb7;
+  background: rgb(179.2943005181, 174.5626943005, 183.2373056995);
 }
 @keyframes animate-loading {
   0% {
@@ -980,7 +980,7 @@ section {
 # Footer
 --------------------------------------------------------------*/
 #footer {
-  background: #e4d7d1;
+  background: rgb(227.56, 215.31, 208.94);
   color: #1d2020;
   font-size: 14px;
   text-align: center;
@@ -1019,7 +1019,7 @@ section {
   transition: 0.3s;
 }
 #footer .social-links a:hover {
-  background: #b3afb7;
+  background: rgb(179.2943005181, 174.5626943005, 183.2373056995);
   color: #fff;
   text-decoration: none;
 }
